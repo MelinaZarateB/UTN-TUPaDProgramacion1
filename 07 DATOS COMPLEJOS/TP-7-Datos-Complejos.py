@@ -98,3 +98,73 @@ print("Aprobados solo en uno:", solo_uno)
 # Aprobados en al menos uno
 al_menos_uno = parcial1 | parcial2
 print("Aprobados al menos en uno:", al_menos_uno)
+
+# 8) Armá un diccionario donde las claves sean nombres de productos y los valores su stock.
+# Permití al usuario:
+# • Consultar el stock de un producto ingresado.
+# • Agregar unidades al stock si el producto ya existe.
+# • Agregar un nuevo producto si no existe.
+
+productos = {"Manzanas": 50, "Bananas": 30, "Naranjas": 20}
+
+while True:
+    accion = input(
+        "Quiere consultar/agregar producto? (consultar/agregar/salir): "
+    ).lower()
+
+    if accion == "salir":
+        break
+    elif accion == "consultar":
+        nombre = input("Ingrese el nombre del producto: ")
+        if nombre in productos:
+            print(f"Stock de {nombre}: {productos[nombre]}")
+        else:
+            print("Producto no encontrado.")
+    elif accion == "agregar":
+        nombre = input("Ingrese el nombre del producto: ")
+        cantidad = int(input("Ingrese la cantidad a agregar: "))
+        if nombre in productos:
+            productos[nombre] += cantidad
+            print(f"Nuevo stock de {nombre}: {productos[nombre]}")
+        else:
+            productos[nombre] = cantidad
+            print(f"Producto {nombre} agregado con stock {cantidad}.")
+    else:
+        print("Opción no valida.")
+
+print("Stock final:", productos)
+
+# 9) Creá una agenda donde las claves sean tuplas de (día, hora) y los valores sean eventos.
+# Ejemplo:
+
+agenda = {
+    ("Lunes", "10:00"): "Matematica",
+    ("Martes", "14:00"): "Programacion",
+    ("Miercoles", "09:00"): "Fsica",
+}
+
+dia = input("Ingrese el dia a consultar: ")
+hora = input("Ingrese la hora a consultar (HH:MM): ")
+
+evento = agenda.get((dia, hora))
+if evento:
+    print(f"En {dia} a las {hora} hay: {evento}")
+else:
+    print("No hay actividad programada en ese horario ")
+
+# Permití consultar qué actividad hay en cierto día y hora.
+# 10) Dado un diccionario que mapea nombres de países con sus capitales, construí un nuevo
+# diccionario donde:
+# • Las capitales sean las claves.
+# • Los países sean los valores
+
+paises_capitales = {
+    "Argentina": "Buenos Aires",
+    "Brasil": "Brasilia",
+    "Chile": "Santiago",
+    "Uruguay": "Montevideo",
+}
+
+capitales_paises = {capital: pais for pais, capital in paises_capitales.items()}
+
+print("Diccionario invertido:", capitales_paises)
